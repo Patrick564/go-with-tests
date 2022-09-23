@@ -24,7 +24,7 @@ func (c Circle) Area() float64 {
 }
 
 type Triangle struct {
-	Base float64
+	Base   float64
 	Height float64
 }
 
