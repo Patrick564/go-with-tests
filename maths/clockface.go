@@ -1,6 +1,9 @@
 package clockface
 
-import "time"
+import (
+	"math"
+	"time"
+)
 
 // A Point represents a two dimensional Cartesian coordinate
 type Point struct {
@@ -8,6 +11,14 @@ type Point struct {
 	Y float64
 }
 
-func SecondHand(t time.Time) Point {
-	return Point{150, 60}
+func secondsInRadians(t time.Time) float64 {
+	return (math.Pi / (30 / (float64(t.Second()))))
+}
+
+func secondHandPoint(t time.Time) Point {
+	angle := secondsInRadians(t)
+	x := math.Sin(angle)
+	y := math.Cos(angle)
+
+	return Point{x, y}
 }
